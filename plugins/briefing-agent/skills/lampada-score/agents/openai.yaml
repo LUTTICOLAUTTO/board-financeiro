@@ -1,0 +1,5 @@
+interface:
+  display_name: "Lampada Score"
+  short_description: "Score de cliente, projeto e risco"
+  brand_color: "#B45309"
+  default_prompt: "Use $lampada-score para pontuar este projeto com o criterio Lampada."

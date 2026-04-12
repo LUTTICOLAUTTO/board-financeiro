@@ -1,0 +1,5 @@
+interface:
+  display_name: "Lampada White Label"
+  short_description: "Devolutiva executiva para cliente"
+  brand_color: "#1D4ED8"
+  default_prompt: "Use $lampada-white-label para gerar uma devolutiva executiva para o cliente."

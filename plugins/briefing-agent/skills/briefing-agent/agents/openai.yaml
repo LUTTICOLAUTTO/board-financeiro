@@ -1,0 +1,5 @@
+interface:
+  display_name: "Briefing Agent"
+  short_description: "Sistema Lampada para briefing e decisao"
+  brand_color: "#0F766E"
+  default_prompt: "Use $briefing-agent para reorganizar este material no metodo Lampada, com briefing, riscos e proximos passos."

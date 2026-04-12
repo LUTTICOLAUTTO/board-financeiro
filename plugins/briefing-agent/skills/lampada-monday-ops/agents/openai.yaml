@@ -1,0 +1,5 @@
+interface:
+  display_name: "Lampada Monday Ops"
+  short_description: "Fluxo operacional Lampada no Monday"
+  brand_color: "#2563EB"
+  default_prompt: "Use $lampada-monday-ops para operar o fluxo Lampada no Monday."

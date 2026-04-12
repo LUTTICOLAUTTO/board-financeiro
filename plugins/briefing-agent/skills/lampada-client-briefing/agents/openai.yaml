@@ -1,0 +1,5 @@
+interface:
+  display_name: "Lampada Client Briefing"
+  short_description: "Briefing client-facing estrategico"
+  brand_color: "#0F766E"
+  default_prompt: "Use $lampada-client-briefing para conduzir um briefing client-facing no jeito Lampada."

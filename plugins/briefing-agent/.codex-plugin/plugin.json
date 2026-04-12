@@ -1,0 +1,32 @@
+{
+  "name": "briefing-agent",
+  "version": "0.1.0",
+  "description": "Sistema Lampada para briefing, score, precificacao e diagnostico executivo.",
+  "author": {
+    "name": "Lutti"
+  },
+  "license": "UNLICENSED",
+  "keywords": [
+    "briefing",
+    "creative-ops",
+    "strategy"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Briefing Agent",
+    "shortDescription": "Metodo Lampada para briefing e decisao comercial",
+    "longDescription": "Converte materiais soltos em diagnostico executivo, briefing maduro, score, precificacao e recomendacoes de decisao com postura de consultoria estrategica.",
+    "developerName": "Lutti",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Use o sistema Lampada para reorganizar este briefing.",
+      "Avalie este projeto com briefing, score e precificacao.",
+      "Gere um diagnostico executivo para o cliente."
+    ],
+    "brandColor": "#0F766E"
+  }
+}

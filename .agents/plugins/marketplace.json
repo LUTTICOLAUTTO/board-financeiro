@@ -1,0 +1,20 @@
+{
+  "name": "local-marketplace",
+  "interface": {
+    "displayName": "Local Plugins"
+  },
+  "plugins": [
+    {
+      "name": "briefing-agent",
+      "source": {
+        "source": "local",
+        "path": "./plugins/briefing-agent"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

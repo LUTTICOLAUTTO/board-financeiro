@@ -1,0 +1,5 @@
+interface:
+  display_name: "Lampada Pricing"
+  short_description: "Precificacao com protecao de margem"
+  brand_color: "#7C3AED"
+  default_prompt: "Use $lampada-pricing para recomendar faixa de investimento e avaliar viabilidade."

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lampada Diagnóstico</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Sora:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Lampada.ag</p>
+          <h1>Diagnóstico Estratégico de Projetos & Experiências</h1>
+          <p class="hero-text">
+            Uma interface de briefing que conversa como consultoria, não como
+            formulário. O cliente responde, o sistema organiza a lógica do
+            projeto e você sai com base real para decidir.
+          </p>
+          <div class="hero-badges">
+            <span>Briefing guiado</span>
+            <span>Leitura estratégica</span>
+            <span>Pronto para score e pricing</span>
+          </div>
+        </div>
+        <div class="hero-card">
+          <p class="hero-card-label">Fluxo ideal</p>
+          <ol>
+            <li>Cliente preenche o diagnóstico</li>
+            <li>Lampada qualifica o projeto</li>
+            <li>Score e precificação entram</li>
+            <li>Saída vira proposta ou devolutiva</li>
+          </ol>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <section class="wizard-panel">
+          <div class="section-head">
+            <div>
+              <p class="section-kicker">Cliente-facing wizard</p>
+              <h2>Roteiro de descoberta</h2>
+            </div>
+            <div class="progress-card">
+              <span id="progress-text">Passo 1 de 4</span>
+              <div class="progress-track">
+                <div id="progress-bar" class="progress-bar"></div>
+              </div>
+            </div>
+          </div>
+
+          <nav class="stepper" aria-label="Etapas do briefing">
+            <button class="step is-active" data-step="0">Contexto</button>
+            <button class="step" data-step="1">Objetivo</button>
+            <button class="step" data-step="2">Público</button>
+            <button class="step" data-step="3">Restrições</button>
+          </nav>
+
+          <form id="diagnostic-form" class="wizard">
+            <section class="step-panel is-active" data-panel="0">
+              <label>
+                Nome da marca ou cliente
+                <input name="brand" placeholder="Ex.: Chevrolet" />
+              </label>
+              <label>
+                O que está acontecendo agora no negócio?
+                <textarea
+                  name="businessContext"
+                  rows="5"
+                  placeholder="Ex.: lançamento importante, pressão de vendas, reposicionamento, cultura interna, retenção de rede..."
+                ></textarea>
+              </label>
+              <label>
+                Por que esse projeto precisa existir agora?
+                <textarea
+                  name="urgency"
+                  rows="4"
+                  placeholder="Ex.: abrir pipeline, fortalecer marca, recuperar desejo, acelerar decisão..."
+                ></textarea>
+              </label>
+            </section>
+
+            <section class="step-panel" data-panel="1">
+              <label>
+                Qual é o objetivo real do projeto?
+                <textarea
+                  name="realGoal"
+                  rows="5"
+                  placeholder="Não descreva o formato. Descreva a mudança que o projeto precisa provocar."
+                ></textarea>
+              </label>
+              <label>
+                Como vocês saberão que deu certo?
+                <textarea
+                  name="kpis"
+                  rows="4"
+                  placeholder="Ex.: leads, reuniões, percepção de marca, retenção, adesão, vendas..."
+                ></textarea>
+              </label>
+              <label>
+                Que decisão esse projeto precisa destravar?
+                <textarea
+                  name="decision"
+                  rows="4"
+                  placeholder="Ex.: compra, adesão, indicação, engajamento, confiança, defesa da marca..."
+                ></textarea>
+              </label>
+            </section>
+
+            <section class="step-panel" data-panel="2">
+              <label>
+                Quem é o público principal?
+                <textarea
+                  name="audience"
+                  rows="4"
+                  placeholder="Ex.: rede, diretoria, cliente enterprise, corretores, influenciadores, imprensa..."
+                ></textarea>
+              </label>
+              <label>
+                O que esse público pensa ou resiste hoje?
+                <textarea
+                  name="resistance"
+                  rows="4"
+                  placeholder="Ex.: ceticismo, baixa prioridade, pouca confiança, resistência comercial..."
+                ></textarea>
+              </label>
+              <label>
+                Que comportamento você quer provocar depois?
+                <textarea
+                  name="behavior"
+                  rows="4"
+                  placeholder="Ex.: pedir proposta, agendar test drive, defender a marca, comprar, aderir..."
+                ></textarea>
+              </label>
+            </section>
+
+            <section class="step-panel" data-panel="3">
+              <label>
+                Qual é a janela de entrega ou data principal?
+                <input
+                  name="timeline"
+                  placeholder="Ex.: setembro/2026, D-90, lançamento em outubro"
+                />
+              </label>
+              <label>
+                Qual é a faixa de investimento confortável?
+                <input
+                  name="budget"
+                  placeholder="Ex.: R$ 600k a R$ 800k"
+                />
+              </label>
+              <label>
+                Quais restrições críticas existem?
+                <textarea
+                  name="constraints"
+                  rows="4"
+                  placeholder="Ex.: jurídico, compliance, prazo, venue, orçamento, múltiplos aprovadores..."
+                ></textarea>
+              </label>
+              <label>
+                O que não pode dar errado?
+                <textarea
+                  name="nonNegotiable"
+                  rows="4"
+                  placeholder="Ex.: reputação, operação, adesão da rede, experiência VIP, segurança..."
+                ></textarea>
+              </label>
+            </section>
+
+            <div class="wizard-actions">
+              <button type="button" id="back-button" class="ghost-button">
+                Voltar
+              </button>
+              <div class="action-stack">
+                <button type="button" id="next-button" class="primary-button">
+                  Avançar
+                </button>
+                <button type="submit" id="submit-button" class="primary-button is-hidden">
+                  Gerar diagnóstico-base
+                </button>
+              </div>
+            </div>
+          </form>
+        </section>
+
+        <aside class="result-panel">
+          <div class="section-head">
+            <div>
+              <p class="section-kicker">Prévia inteligente</p>
+              <h2>Saída para Lampada</h2>
+            </div>
+            <button id="copy-button" class="ghost-button">Copiar resumo</button>
+          </div>
+
+          <div id="result-state" class="empty-state">
+            <p class="empty-title">Ainda sem diagnóstico.</p>
+            <p>
+              Conforme o cliente preenche, o sistema pode gerar briefing, score,
+              pricing e depois alimentar o Monday automaticamente.
+            </p>
+          </div>
+
+          <article id="result-card" class="result-card is-hidden">
+            <div class="result-topline">
+              <span id="maturity-pill" class="pill">Maturidade: baixa</span>
+              <span id="risk-pill" class="pill pill-alt">Atenção</span>
+            </div>
+            <h3 id="result-title">Resumo executivo</h3>
+            <p id="summary-output"></p>
+
+            <div class="result-block">
+              <h4>Perguntas bloqueadoras</h4>
+              <ul id="blocking-output"></ul>
+            </div>
+
+            <div class="result-block">
+              <h4>Próximo passo recomendado</h4>
+              <p id="next-step-output"></p>
+            </div>
+          </article>
+        </aside>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

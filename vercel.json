@@ -1,0 +1,17 @@
+{
+  "framework": "nextjs",
+  "regions": [
+    "iad1"
+  ],
+  "functions": {
+    "app/api/diagnose/route.js": {
+      "maxDuration": 60
+    },
+    "app/api/admin/login/route.js": {
+      "maxDuration": 10
+    },
+    "app/api/session-access/route.js": {
+      "maxDuration": 10
+    }
+  }
+}
