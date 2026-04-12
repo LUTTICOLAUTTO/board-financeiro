@@ -62,6 +62,32 @@ textarea {
   padding: 32px 0 48px;
 }
 
+.site-nav-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  backdrop-filter: blur(16px);
+  background: rgba(244, 239, 230, 0.72);
+  border-bottom: 1px solid rgba(61, 55, 43, 0.08);
+}
+
+.site-nav {
+  width: min(1240px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 16px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  font-weight: 700;
+}
+
+.site-nav-links {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
 .hero,
 .workspace {
   display: grid;
@@ -77,7 +103,9 @@ textarea {
 .hero-copy,
 .hero-card,
 .wizard-panel,
-.result-panel {
+.result-panel,
+.launcher-card,
+.session-card {
   backdrop-filter: blur(18px);
   background: var(--panel);
   border: 1px solid var(--line);
@@ -485,6 +513,77 @@ textarea:focus {
   color: var(--muted);
 }
 
+.launcher-grid,
+.session-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.launcher-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.launcher-card,
+.session-card {
+  display: block;
+  padding: 24px;
+  border-radius: 22px;
+  text-decoration: none;
+  transition: transform 180ms ease, border-color 180ms ease;
+}
+
+.launcher-card:hover,
+.session-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(13, 109, 99, 0.25);
+}
+
+.launcher-card h3,
+.session-card h3 {
+  margin: 8px 0 10px;
+  font-size: 1.15rem;
+}
+
+.launcher-card p,
+.session-card p,
+.session-card small {
+  margin: 0;
+  color: var(--muted);
+}
+
+.launcher-card-body {
+  min-height: 72px;
+}
+
+.launcher-link {
+  display: inline-flex;
+  margin-top: 16px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(13, 109, 99, 0.08);
+  color: var(--teal);
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.session-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.session-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.session-dot {
+  width: 14px;
+  height: 14px;
+  margin-top: 6px;
+  border-radius: 999px;
+  flex: 0 0 auto;
+}
+
 .status-inline {
   margin-top: 16px;
   padding: 12px 14px;
@@ -525,6 +624,12 @@ textarea:focus {
     padding-top: 20px;
   }
 
+  .site-nav {
+    width: min(100% - 20px, 100%);
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   .hero-copy,
   .hero-card,
   .wizard-panel,
@@ -547,7 +652,9 @@ textarea:focus {
   }
 
   .admin-toolbar,
-  .admin-stats {
+  .admin-stats,
+  .launcher-grid,
+  .session-grid {
     grid-template-columns: 1fr;
   }
 }

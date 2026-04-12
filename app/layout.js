@@ -1,4 +1,5 @@
 import "./globals.css";
+import Link from "next/link";
 
 export const metadata = {
   title: "Lampada Diagnostico",
@@ -9,7 +10,19 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR">
-      <body>{children}</body>
+      <body>
+        <header className="site-nav-wrap">
+          <nav className="site-nav">
+            <Link href="/">Lampada Platform</Link>
+            <div className="site-nav-links">
+              <Link href="/briefing">Briefing</Link>
+              <Link href="/sessions">Sessões</Link>
+              <Link href="/admin/login">Admin</Link>
+            </div>
+          </nav>
+        </header>
+        {children}
+      </body>
     </html>
   );
 }
