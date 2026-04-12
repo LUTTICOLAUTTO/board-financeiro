@@ -1,38 +1,58 @@
 # Release Checklist
 
-## Git
+## Produto público
 
-- criar branch dedicada
-- revisar `git status`
-- confirmar `.env.local` fora do versionamento
-- revisar `README.md` e `DEPLOY_VERCEL.md`
+- homepage em `/` comunica claramente a proposta do produto
+- CTA principal leva para `/briefing`
+- `/briefing` abre com o fluxo novo de 4 etapas
+- checklist de cobertura aparece antes do envio
+- resultado mostra briefing reorganizado, perguntas, premissas, gates, score e pricing
 
-## Produto
+## Sessões privadas
 
-- rota pública abre
-- rota client-facing dedicada abre
-- autenticação simples por cliente funciona
-- submit gera diagnóstico
-- página de obrigado abre com `id`
+- `/sessions` explica o modelo sem listar clientes
+- links `/c/[token]` funcionam por acesso direto
+- branding por cliente aparece corretamente
+- `accessCode` funciona quando configurado
+- página de obrigado carrega depois do submit
 
-## Comercial
+## Admin interno
 
-- score aparece no app
-- pricing aparece no app
-- devolutiva client-facing aparece no app
-- admin lista submissões
-- admin filtra por score e pricing
-- admin abre detalhe do caso
+- `/admin/login` autentica com sucesso
+- `/admin` lista submissões
+- busca, filtros, ordenação e paginação funcionam
+- `/admin/submissions/[id]` mostra briefing reorganizado, gates, checklist, score e pricing
+
+## IA e lógica de negócio
+
+- prompt atualizado usa o método novo do agente
+- schema aceita briefing classification, gates e checklist
+- fallback continua funcionando sem quebrar a UI
+- score, pricing e devolutiva client-facing continuam aparecendo
 
 ## Operação
 
 - item no Monday é criado
-- resumo vai no update do item
 - sessão/origem aparece no board
+- banco persiste submissões com `DATABASE_URL`
+- fallback local continua útil para desenvolvimento
 
-## Deploy
+## Segurança de publicação
 
-- variáveis de ambiente preenchidas na Vercel
-- domínio configurado
-- testes básicos feitos em produção
-- acesso interno em `/admin/login` validado
+- home pública não expõe lista de clientes
+- `/sessions` não expõe tokens reais
+- admin segue em rota autenticada
+- `.env.local` não entra no repositório
+
+## Documentação
+
+- `README.md` atualizado
+- `DEPLOY_VERCEL.md` atualizado
+- `PRODUCTION_ENVS.md` revisado
+
+## Git
+
+- revisar `git diff`
+- revisar `git status`
+- stage dos arquivos alterados
+- commit com mensagem clara

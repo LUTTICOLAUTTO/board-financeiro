@@ -70,6 +70,35 @@ export default async function AdminSubmissionDetailPage({ params }) {
               <p>{diagnosis.strategicDiagnosis}</p>
             </Section>
 
+            <Section title="Briefing reorganizado">
+              <div className="detail-grid">
+                <div className="detail-card">
+                  <strong>Contexto</strong>
+                  <p>{diagnosis.reorganizedBrief?.context}</p>
+                </div>
+                <div className="detail-card">
+                  <strong>Objetivo real</strong>
+                  <p>{diagnosis.reorganizedBrief?.realObjective}</p>
+                </div>
+                <div className="detail-card">
+                  <strong>KPIs</strong>
+                  <p>{diagnosis.reorganizedBrief?.successIndicators}</p>
+                </div>
+                <div className="detail-card">
+                  <strong>Público e comportamento</strong>
+                  <p>{diagnosis.reorganizedBrief?.audienceAndBehavior}</p>
+                </div>
+                <div className="detail-card">
+                  <strong>Restrições</strong>
+                  <p>{diagnosis.reorganizedBrief?.restrictions}</p>
+                </div>
+                <div className="detail-card">
+                  <strong>Governança</strong>
+                  <p>{diagnosis.reorganizedBrief?.governance}</p>
+                </div>
+              </div>
+            </Section>
+
             <Section title="Perguntas bloqueadoras">
               <ul>
                 {diagnosis.blockingQuestions.map((item) => (
@@ -78,9 +107,25 @@ export default async function AdminSubmissionDetailPage({ params }) {
               </ul>
             </Section>
 
+            <Section title="Perguntas de refinamento">
+              <ul>
+                {diagnosis.refinementQuestions?.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </Section>
+
             <Section title="Pontos de atenção">
               <ul>
                 {diagnosis.attentionPoints.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </Section>
+
+            <Section title="Premissas assumidas">
+              <ul>
+                {diagnosis.assumptions?.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
@@ -112,6 +157,18 @@ export default async function AdminSubmissionDetailPage({ params }) {
                 <li>{`Faixa mínima: ${diagnosis.pricing.minimumRange}`}</li>
                 <li>{`Margem estimada: ${diagnosis.pricing.margin}`}</li>
                 <li>{`Classificação: ${diagnosis.pricing.classification}`}</li>
+                <li>{`Classificação do briefing: ${diagnosis.briefingClassification}`}</li>
+              </ul>
+            </Section>
+
+            <Section title="Gates">
+              <ul>
+                {diagnosis.gateStatus?.map((item) => (
+                  <li key={item.name}>
+                    <strong>{`${item.name}: ${item.status}`}</strong>
+                    {` — ${item.rationale}`}
+                  </li>
+                ))}
               </ul>
             </Section>
 
@@ -119,6 +176,17 @@ export default async function AdminSubmissionDetailPage({ params }) {
               <ul>
                 {diagnosis.pricing.financialRisks.map((item) => (
                   <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </Section>
+
+            <Section title="Checklist operacional">
+              <ul>
+                {diagnosis.checklistSummary?.map((item) => (
+                  <li key={item.area}>
+                    <strong>{`${item.area}: ${item.status}`}</strong>
+                    {` — ${item.summary}`}
+                  </li>
                 ))}
               </ul>
             </Section>

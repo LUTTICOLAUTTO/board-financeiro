@@ -1,6 +1,6 @@
 # Lampada Diagnostico App
 
-App client-facing em Next.js para captar briefing, gerar diagnostico no metodo Lampada com a OpenAI e registrar o caso no Monday.
+Webapp público e client-facing em Next.js para captar briefing, reorganizar o caso no método Lampada, gerar diagnóstico com score e pricing, e registrar tudo no admin e no Monday.
 
 ## Stack
 
@@ -30,12 +30,14 @@ npm run dev
 
 ## Fluxo
 
-1. Cliente preenche o formulario
-2. `POST /api/diagnose` monta o prompt Lampada
-3. A OpenAI retorna diagnostico + score + pricing + devolutiva cliente-facing
-4. O app salva o historico em Postgres se `DATABASE_URL` existir; caso contrario usa `data/submissions.json`
-5. O app cria um item no board do Monday
-6. O cliente e redirecionado para uma pagina final de agradecimento
+1. A homepage pública apresenta a proposta da plataforma
+2. O cliente entra no fluxo em `/briefing` ou por um link dedicado `/c/[token]`
+3. O app coleta o briefing em quatro blocos: base comercial, escopo, operação e experiência
+4. `POST /api/diagnose` monta o prompt Lampada
+5. A OpenAI retorna briefing reorganizado, perguntas, premissas, gates, checklist, score, pricing e devolutiva client-facing
+6. O app salva o histórico em Postgres se `DATABASE_URL` existir; caso contrário usa `data/submissions.json`
+7. O app cria um item no board do Monday
+8. O cliente é redirecionado para uma página final de agradecimento
 
 ## Links dedicados por cliente
 
@@ -89,12 +91,14 @@ Variaveis minimas:
 
 Camadas prontas no app:
 
+- homepage pública comercial em `/`
 - autenticacao simples por sessao client-facing
 - branding por cliente via `CLIENT_SESSIONS_JSON`
 - pagina final de agradecimento em `/c/[token]/obrigado`
 - geracao automatica de score, pricing e devolutiva executiva
 - painel admin interno em `/admin`
 - autenticacao simples da equipe Lampada com email e senha
+- checklist operacional e gates de decisão no diagnóstico
 
 ## Painel interno
 
@@ -127,7 +131,7 @@ Veja também as variáveis em [PRODUCTION_ENVS.md](./PRODUCTION_ENVS.md)
 
 ## Arquivos principais
 
-- `app/page.js`: tela principal
+- `app/page.js`: landing pública
 - `app/c/[token]/page.js`: links dedicados por cliente
 - `app/c/[token]/obrigado/page.js`: pagina final client-facing
 - `app/admin/login/page.js`: login interno
@@ -144,6 +148,12 @@ Veja também as variáveis em [PRODUCTION_ENVS.md](./PRODUCTION_ENVS.md)
 - `lib/client-sessions.js`: configuracao das sessoes client-facing
 - `lib/session-auth.js`: cookie de acesso por sessao
 - `lib/admin-auth.js`: autenticacao interna da equipe
+
+## Publicação segura
+
+- a home pública não lista clientes
+- a página `/sessions` explica o funcionamento das sessões privadas sem expor tokens reais
+- links dedicados continuam sendo distribuídos pela equipe da Lampada
 
 ## Fontes oficiais
 
