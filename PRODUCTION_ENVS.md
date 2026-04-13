@@ -64,6 +64,16 @@ Modelo:
 }
 ```
 
+Arquivo pronto no projeto:
+
+- [client-sessions.production.json](/Users/lutti/Documents/New%20project/client-sessions.production.json)
+
+Uso recomendado:
+
+1. abrir esse arquivo
+2. ajustar nomes, textos, códigos e cores
+3. colar o JSON final inteiro na env `CLIENT_SESSIONS_JSON`
+
 ## Domínios sugeridos
 
 - público: `briefing.lampada.ag`
@@ -77,3 +87,19 @@ Modelo:
 4. enviar um briefing
 5. confirmar criação no admin
 6. confirmar criação no Monday
+
+## Push e Vercel
+
+Se ainda não houver remoto Git configurado, faça:
+
+```bash
+git remote add origin <URL_DO_REPOSITORIO>
+git push -u origin codex/lampada-admin-deploy
+```
+
+Depois:
+
+1. importar o repositório na Vercel
+2. selecionar a branch `codex/lampada-admin-deploy` ou fazer merge na sua branch principal
+3. preencher as envs
+4. disparar o deploy

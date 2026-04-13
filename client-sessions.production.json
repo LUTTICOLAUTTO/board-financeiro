@@ -1,0 +1,83 @@
+{
+  "chevrolet-sonic": {
+    "name": "Chevrolet Sonic Sessions",
+    "eyebrow": "Chevrolet x Lampada",
+    "title": "Diagnóstico de Lançamento Chevrolet Sonic",
+    "intro": "Uma sessão guiada para organizar o projeto, clarificar a tese de negócio e acelerar a próxima decisão com a Lampada.",
+    "badges": [
+      "Sessão dedicada",
+      "Diagnóstico consultivo",
+      "Próximo passo claro"
+    ],
+    "flowTitle": "O que acontece depois",
+    "flowSteps": [
+      "Você compartilha o contexto real",
+      "A Lampada estrutura o diagnóstico",
+      "O caso é qualificado internamente",
+      "Voltamos com recomendação objetiva"
+    ],
+    "wizardKicker": "Sessão dedicada Chevrolet",
+    "wizardTitle": "Descoberta estratégica do projeto",
+    "thankYouTitle": "Briefing recebido com sucesso",
+    "thankYouText": "Recebemos seu briefing e já vamos organizar a próxima leitura estratégica.",
+    "accessCode": "lampada-sonic-2026",
+    "branding": {
+      "primary": "#0a6c63",
+      "accent": "#c27b21"
+    }
+  },
+  "bmw-awards": {
+    "name": "BMW Awards Dinner",
+    "eyebrow": "BMW x Lampada",
+    "title": "Diagnóstico de Jantar de Premiação BMW",
+    "intro": "Uma sessão dedicada para estruturar o racional do evento, travar decisões críticas e evitar proposta no escuro.",
+    "badges": [
+      "Sessão dedicada",
+      "Critério antes do budget",
+      "Governança clara"
+    ],
+    "flowTitle": "Como a Lampada vai operar",
+    "flowSteps": [
+      "Você compartilha o contexto do evento",
+      "A Lampada organiza diagnóstico e riscos",
+      "O caso segue para score e pricing",
+      "Voltamos com recomendação executiva"
+    ],
+    "wizardKicker": "Sessão dedicada BMW",
+    "wizardTitle": "Briefing estratégico do projeto",
+    "thankYouTitle": "Briefing BMW recebido",
+    "thankYouText": "Recebemos as informações e vamos estruturar a próxima leitura do projeto com mais precisão.",
+    "accessCode": "lampada-bmw-2026",
+    "branding": {
+      "primary": "#1d3557",
+      "accent": "#c08a2d"
+    }
+  },
+  "suhai-festival": {
+    "name": "Suhai Festival Interlagos",
+    "eyebrow": "Suhai x Lampada",
+    "title": "Diagnóstico de Naming Rights e Ativações",
+    "intro": "Uma sessão estratégica para organizar escopo, risco, contrapartidas e tese de negócio antes da proposta.",
+    "badges": [
+      "Sessão dedicada",
+      "Estratégia antes da produção",
+      "Leitura de risco"
+    ],
+    "flowTitle": "Próximos passos do sistema",
+    "flowSteps": [
+      "Você compartilha contexto e escopo",
+      "A Lampada organiza entregas e bloqueadores",
+      "O caso entra em score e precificação",
+      "Voltamos com recomendação objetiva"
+    ],
+    "wizardKicker": "Sessão dedicada Suhai",
+    "wizardTitle": "Estruturação estratégica do projeto",
+    "thankYouTitle": "Briefing Suhai recebido",
+    "thankYouText": "Recebemos o material e vamos transformar isso em leitura estratégica, score e próximo passo.",
+    "accessCode": "lampada-suhai-2026",
+    "branding": {
+      "primary": "#6f1d1b",
+      "accent": "#c77d1f"
+    }
+  }
+}
