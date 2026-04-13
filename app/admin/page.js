@@ -6,7 +6,7 @@ import { requireAdminAccess } from "@/lib/admin-auth";
 import { getAllSubmissions } from "@/lib/persistence";
 
 export default async function AdminDashboardPage() {
-  requireAdminAccess();
+  await requireAdminAccess();
 
   const submissions = await getAllSubmissions();
 

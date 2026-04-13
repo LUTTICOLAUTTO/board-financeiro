@@ -2,8 +2,8 @@ import AdminLoginForm from "@/components/admin-login-form";
 import { hasAdminAccess } from "@/lib/admin-auth";
 import { redirect } from "next/navigation";
 
-export default function AdminLoginPage() {
-  if (hasAdminAccess()) {
+export default async function AdminLoginPage() {
+  if (await hasAdminAccess()) {
     redirect("/admin");
   }
 
