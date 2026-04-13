@@ -15,7 +15,7 @@ export default async function ClientSessionPage({ params }) {
 
   return (
     <DiagnosticApp
-      accessGranted={hasSessionAccess(token)}
+      accessGranted={await hasSessionAccess(token)}
       requiresAuth={Boolean(privateSession.accessCode)}
       session={session}
     />
