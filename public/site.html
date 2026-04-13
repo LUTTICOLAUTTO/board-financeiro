@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lampada Briefing Platform</title>
+    <style>
+      :root {
+        --bg: #f4efe6;
+        --panel: rgba(255, 252, 247, 0.84);
+        --line: rgba(61, 55, 43, 0.12);
+        --text: #1f1c17;
+        --muted: #60574c;
+        --teal: #0d6d63;
+        --amber: #b9701e;
+        --shadow: 0 20px 70px rgba(39, 31, 22, 0.08);
+        --radius-lg: 28px;
+        --radius-md: 18px;
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top left, rgba(13, 109, 99, 0.12), transparent 28%),
+          radial-gradient(circle at top right, rgba(185, 112, 30, 0.14), transparent 24%),
+          linear-gradient(180deg, #f7f1e8 0%, #f0e7da 100%);
+        font-family: "Segoe UI", Arial, sans-serif;
+      }
+
+      .shell {
+        width: min(1240px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 32px 0 48px;
+        display: grid;
+        gap: 24px;
+      }
+
+      .hero,
+      .grid-2,
+      .cards {
+        display: grid;
+        gap: 20px;
+      }
+
+      .hero {
+        grid-template-columns: 1.25fr 0.95fr;
+      }
+
+      .grid-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .cards {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .panel,
+      .session-card,
+      .cta-card {
+        backdrop-filter: blur(18px);
+        background: var(--panel);
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+        border-radius: var(--radius-lg);
+      }
+
+      .panel,
+      .session-card,
+      .cta-card {
+        padding: 28px;
+      }
+
+      .eyebrow,
+      .kicker {
+        margin: 0 0 12px;
+        color: var(--teal);
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1, h2, h3, p, ol, ul, pre { margin: 0; }
+
+      h1 {
+        max-width: 11ch;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(2.8rem, 5vw, 5rem);
+        line-height: 0.94;
+        letter-spacing: -0.06em;
+      }
+
+      h2 {
+        font-size: clamp(1.7rem, 3vw, 2.4rem);
+        letter-spacing: -0.04em;
+      }
+
+      h3 {
+        font-size: 1.15rem;
+        margin-bottom: 10px;
+      }
+
+      p, li {
+        color: var(--muted);
+        line-height: 1.72;
+      }
+
+      .hero-text { margin-top: 18px; max-width: 64ch; }
+
+      .badges, .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .badges { margin-top: 22px; }
+      .buttons { margin-top: 22px; }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: rgba(13, 109, 99, 0.08);
+        color: var(--teal);
+        font-size: 0.84rem;
+        font-weight: 700;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 18px;
+        border-radius: 14px;
+        text-decoration: none;
+        font-weight: 700;
+      }
+
+      .button-primary {
+        background: var(--text);
+        color: #fff7ef;
+      }
+
+      .button-secondary {
+        background: rgba(31, 28, 23, 0.06);
+        color: var(--text);
+      }
+
+      .proof-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 20px;
+      }
+
+      .proof-card,
+      .mini-card {
+        padding: 16px;
+        border-radius: 16px;
+        background: rgba(255, 250, 242, 0.72);
+        border: 1px solid rgba(31, 28, 23, 0.08);
+      }
+
+      .mini-card strong,
+      .proof-card strong { display: block; margin-bottom: 6px; }
+
+      .sessions {
+        display: grid;
+        gap: 16px;
+      }
+
+      .session-card {
+        display: grid;
+        gap: 14px;
+      }
+
+      .session-top {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 999px;
+        flex: 0 0 auto;
+      }
+
+      .session-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .session-actions a,
+      .session-actions button,
+      .copy-button {
+        appearance: none;
+        border: 0;
+        cursor: pointer;
+        border-radius: 999px;
+        padding: 10px 14px;
+        background: rgba(13, 109, 99, 0.08);
+        color: var(--teal);
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      pre {
+        white-space: pre-wrap;
+        word-break: break-word;
+        padding: 18px;
+        border-radius: 18px;
+        background: #fffaf2;
+        border: 1px solid rgba(31, 28, 23, 0.08);
+        color: var(--muted);
+        line-height: 1.6;
+        font-size: 0.9rem;
+      }
+
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 20px;
+        margin-bottom: 18px;
+      }
+
+      .footer-note {
+        font-size: 0.92rem;
+        color: var(--muted);
+      }
+
+      @media (max-width: 980px) {
+        .hero,
+        .grid-2,
+        .cards {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div class="panel">
+          <p class="eyebrow">Lampada Briefing Platform</p>
+          <h1>Briefing ruim deixa de virar proposta bonita e inviável.</h1>
+          <p class="hero-text">
+            Um webapp público, intuitivo e consultivo para captar briefings com
+            mais clareza, rodar diagnóstico estratégico, gerar score, pricing e
+            organizar a decisão com menos ruído. Esta versão HTML serve como
+            vitrine estática e compartilhável da plataforma.
+          </p>
+          <div class="badges">
+            <span class="badge">Briefing client-facing</span>
+            <span class="badge">Admin e Monday</span>
+            <span class="badge">Site HTML estático</span>
+          </div>
+          <div class="buttons">
+            <a class="button button-primary" href="/briefing">Iniciar briefing</a>
+            <a class="button button-secondary" href="/">Abrir landing do app</a>
+            <a class="button button-secondary" href="/admin/login">Abrir admin</a>
+          </div>
+        </div>
+
+        <div class="panel">
+          <p class="eyebrow">O que o sistema entrega</p>
+          <ol>
+            <li>Briefing reorganizado em blocos executivos</li>
+            <li>Perguntas bloqueadoras e premissas</li>
+            <li>Gates de decisão e checklist operacional</li>
+            <li>Score, pricing e devolutiva client-facing</li>
+          </ol>
+          <div class="proof-grid">
+            <div class="proof-card">
+              <strong>Antes</strong>
+              <p>Pedido solto, escopo elástico e verba no escuro.</p>
+            </div>
+            <div class="proof-card">
+              <strong>Depois</strong>
+              <p>Critério, leitura de risco e próximo passo claro.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Como usar</p>
+            <h2>Uma jornada simples para o cliente e útil para a equipe</h2>
+          </div>
+        </div>
+        <div class="cards">
+          <div class="cta-card">
+            <p class="kicker">1. Entrada guiada</p>
+            <h3>O cliente preenche em quatro blocos</h3>
+            <p>Base comercial, escopo, operação e experiência, em vez de um formulário frio.</p>
+          </div>
+          <div class="cta-card">
+            <p class="kicker">2. Leitura estrutural</p>
+            <h3>O sistema mede cobertura e lacunas</h3>
+            <p>Antes mesmo do envio, o app mostra se os dados bloqueadores ainda estão frágeis.</p>
+          </div>
+          <div class="cta-card">
+            <p class="kicker">3. Decisão operacional</p>
+            <h3>O caso segue para score e pricing</h3>
+            <p>O time lê tudo no admin e no Monday com gates, checklist e devolutiva executiva.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Para quem serve</p>
+            <h2>Projetos que pedem clareza antes de criatividade</h2>
+          </div>
+        </div>
+        <div class="cards">
+          <div class="mini-card">
+            <strong>Lançamentos e convenções</strong>
+            <p>Quando a tese de negócio precisa ficar clara antes de abrir formato, conteúdo e produção.</p>
+          </div>
+          <div class="mini-card">
+            <strong>Eventos médicos e contas sensíveis</strong>
+            <p>Quando compliance, governança e risco político mudam o jogo desde o briefing.</p>
+          </div>
+          <div class="mini-card">
+            <strong>Viagens premium e concorrências complexas</strong>
+            <p>Quando escopo, margem, experiência e operação precisam andar juntos desde o início.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid-2">
+        <div class="panel">
+          <div class="section-head">
+            <div>
+              <p class="kicker">Sessões prontas</p>
+              <h2>Links dedicados por cliente</h2>
+            </div>
+          </div>
+          <div class="sessions" id="sessions"></div>
+        </div>
+
+        <div class="panel">
+          <div class="section-head">
+            <div>
+              <p class="kicker">Env pronta</p>
+              <h2>CLIENT_SESSIONS_JSON para produção</h2>
+            </div>
+            <button class="copy-button" id="copy-env">Copiar env</button>
+          </div>
+          <pre id="env-output"></pre>
+          <p class="footer-note" style="margin-top: 14px;">
+            Cole isso em `CLIENT_SESSIONS_JSON` na Vercel ou em `.env.local`.
+          </p>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Publicação segura</p>
+            <h2>O que fica público e o que continua privado</h2>
+          </div>
+        </div>
+        <div class="cards">
+          <div class="mini-card">
+            <strong>Camada pública</strong>
+            <p>Este HTML, a landing do app e o briefing genérico podem ir para produção como vitrine comercial.</p>
+          </div>
+          <div class="mini-card">
+            <strong>Camada privada</strong>
+            <p>As rotas `/c/[token]` seguem por distribuição controlada e podem usar código de acesso.</p>
+          </div>
+          <div class="mini-card">
+            <strong>Camada interna</strong>
+            <p>O admin concentra histórico, score, pricing, gates e leitura operacional da equipe.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const sessions = {
+        "chevrolet-sonic": {
+          name: "Chevrolet Sonic Sessions",
+          title: "Diagnóstico Estratégico de Lançamento Chevrolet Sonic",
+          accessCode: "lampada-sonic-2026",
+          branding: { primary: "#0a6c63", accent: "#c27b21" }
+        },
+        "bmw-awards": {
+          name: "BMW Awards Dinner",
+          title: "Diagnóstico Estratégico de Jantar de Premiação BMW",
+          accessCode: "lampada-bmw-2026",
+          branding: { primary: "#1d3557", accent: "#c08a2d" }
+        },
+        "suhai-festival": {
+          name: "Suhai Festival Interlagos",
+          title: "Diagnóstico Estratégico de Naming Rights e Ativações",
+          accessCode: "lampada-suhai-2026",
+          branding: { primary: "#6f1d1b", accent: "#c77d1f" }
+        },
+        "gm-cdp": {
+          name: "GM Clube do Presidente",
+          title: "Diagnóstico Estratégico de Viagem de Incentivo Premium",
+          accessCode: "lampada-gm-cdp-2026",
+          branding: { primary: "#12344d", accent: "#d09a2d" }
+        },
+        "public-demo": {
+          name: "Lampada Public Demo",
+          title: "Diagnóstico Estratégico de Projetos & Experiências",
+          accessCode: "",
+          branding: { primary: "#0d6d63", accent: "#b9701e" }
+        }
+      };
+
+      const envText = `CLIENT_SESSIONS_JSON=${JSON.stringify({
+        "chevrolet-sonic": {
+          name: "Chevrolet Sonic Sessions",
+          eyebrow: "Chevrolet x Lampada",
+          title: "Diagnóstico Estratégico de Lançamento Chevrolet Sonic",
+          intro: "Uma sessão guiada para estruturar o projeto com mais clareza, consolidar a tese de negócio e acelerar a próxima decisão com critério.",
+          badges: ["Sessão dedicada", "Diagnóstico estratégico", "Próximo passo claro"],
+          flowTitle: "Como funciona",
+          flowSteps: [
+            "Você compartilha o contexto real do projeto",
+            "A Lampada reorganiza o briefing em lógica estratégica",
+            "O caso passa por score, risco e viabilidade",
+            "Voltamos com uma recomendação objetiva"
+          ],
+          wizardKicker: "Sessão dedicada Chevrolet",
+          wizardTitle: "Estruturação estratégica do lançamento",
+          thankYouTitle: "Briefing recebido com sucesso",
+          thankYouText: "Recebemos seu material e vamos transformá-lo em uma leitura mais clara, madura e acionável.",
+          accessCode: "lampada-sonic-2026",
+          branding: { primary: "#0a6c63", accent: "#c27b21" }
+        },
+        "bmw-awards": {
+          name: "BMW Awards Dinner",
+          eyebrow: "BMW x Lampada",
+          title: "Diagnóstico Estratégico de Jantar de Premiação BMW",
+          intro: "Uma sessão dedicada para estruturar o racional do projeto, alinhar critérios de decisão e evitar proposta no escuro.",
+          badges: ["Sessão dedicada", "Critério antes do budget", "Governança clara"],
+          flowTitle: "Como funciona",
+          flowSteps: [
+            "Você compartilha o contexto do projeto",
+            "A Lampada identifica lacunas, riscos e travas",
+            "O caso segue para score e precificação",
+            "Voltamos com uma leitura executiva"
+          ],
+          wizardKicker: "Sessão dedicada BMW",
+          wizardTitle: "Estruturação estratégica do projeto",
+          thankYouTitle: "Briefing BMW recebido",
+          thankYouText: "Recebemos as informações e vamos consolidar a próxima leitura do projeto com mais precisão.",
+          accessCode: "lampada-bmw-2026",
+          branding: { primary: "#1d3557", accent: "#c08a2d" }
+        },
+        "suhai-festival": {
+          name: "Suhai Festival Interlagos",
+          eyebrow: "Suhai x Lampada",
+          title: "Diagnóstico Estratégico de Naming Rights e Ativações",
+          intro: "Uma sessão estratégica para organizar escopo, contrapartidas, risco e tese de negócio antes da proposta.",
+          badges: ["Sessão dedicada", "Estratégia antes da produção", "Leitura de risco"],
+          flowTitle: "Como funciona",
+          flowSteps: [
+            "Você compartilha contexto, ambição e escopo",
+            "A Lampada reorganiza entregas e bloqueadores",
+            "O caso avança para score e precificação",
+            "Voltamos com recomendação objetiva"
+          ],
+          wizardKicker: "Sessão dedicada Suhai",
+          wizardTitle: "Estruturação estratégica do projeto",
+          thankYouTitle: "Briefing Suhai recebido",
+          thankYouText: "Recebemos o material e vamos convertê-lo em leitura estratégica, score e próximo passo recomendado.",
+          accessCode: "lampada-suhai-2026",
+          branding: { primary: "#6f1d1b", accent: "#c77d1f" }
+        },
+        "gm-cdp": {
+          name: "GM Clube do Presidente",
+          eyebrow: "GM x Lampada",
+          title: "Diagnóstico Estratégico de Viagem de Incentivo Premium",
+          intro: "Uma sessão dedicada para estruturar um briefing sensível, proteger margem e reduzir risco operacional, político e financeiro.",
+          badges: ["Conta sensível", "Controle antes do wow", "Governança crítica"],
+          flowTitle: "Como funciona",
+          flowSteps: [
+            "Você compartilha os dados mínimos do projeto",
+            "A Lampada reorganiza o briefing em base executável",
+            "O caso passa por gates, score e leitura de risco",
+            "Voltamos com diagnóstico e próximos passos"
+          ],
+          wizardKicker: "Sessão dedicada GM",
+          wizardTitle: "Estruturação estratégica da experiência",
+          thankYouTitle: "Briefing GM recebido",
+          thankYouText: "Recebemos as informações e vamos estruturar a leitura estratégica com foco em viabilidade, risco e decisão.",
+          accessCode: "lampada-gm-cdp-2026",
+          branding: { primary: "#12344d", accent: "#d09a2d" }
+        },
+        "public-demo": {
+          name: "Lampada Public Demo",
+          eyebrow: "Lampada.ag",
+          title: "Diagnóstico Estratégico de Projetos & Experiências",
+          intro: "Uma demonstração pública da plataforma para entender como a Lampada transforma briefing em critério, score e próximo passo.",
+          badges: ["Demo pública", "Método Lampada", "Leitura estratégica"],
+          flowTitle: "Como funciona",
+          flowSteps: [
+            "Você preenche o briefing guiado",
+            "O sistema mede cobertura e lacunas",
+            "A IA organiza o caso no método Lampada",
+            "Você recebe uma leitura executiva"
+          ],
+          wizardKicker: "Experiência pública",
+          wizardTitle: "Teste o método Lampada",
+          thankYouTitle: "Diagnóstico recebido",
+          thankYouText: "Recebemos suas informações e geramos uma leitura inicial do caso.",
+          accessCode: "",
+          branding: { primary: "#0d6d63", accent: "#b9701e" }
+        }
+      })}`;
+
+      document.getElementById("env-output").textContent = envText;
+
+      document.getElementById("copy-env").addEventListener("click", async () => {
+        await navigator.clipboard.writeText(envText);
+        document.getElementById("copy-env").textContent = "Copiado";
+        setTimeout(() => {
+          document.getElementById("copy-env").textContent = "Copiar env";
+        }, 1500);
+      });
+
+      const sessionsContainer = document.getElementById("sessions");
+      Object.entries(sessions).forEach(([token, session]) => {
+        const card = document.createElement("article");
+        card.className = "session-card";
+        card.innerHTML = `
+          <div class="session-top">
+            <span class="dot" style="background:${session.branding.primary}"></span>
+            <div>
+              <h3>${session.name}</h3>
+              <p>${session.title}</p>
+            </div>
+          </div>
+          <div class="session-actions">
+            <a href="/c/${token}">Abrir sessão</a>
+            <button type="button" data-copy="/c/${token}">Copiar rota</button>
+            ${session.accessCode ? `<button type="button" data-copy="${session.accessCode}">Copiar código</button>` : ""}
+          </div>
+        `;
+        sessionsContainer.appendChild(card);
+      });
+
+      sessionsContainer.addEventListener("click", async (event) => {
+        const target = event.target.closest("[data-copy]");
+        if (!target) return;
+        await navigator.clipboard.writeText(target.getAttribute("data-copy"));
+        const previous = target.textContent;
+        target.textContent = "Copiado";
+        setTimeout(() => {
+          target.textContent = previous;
+        }, 1500);
+      });
+    </script>
+  </body>
+</html>

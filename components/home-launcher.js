@@ -43,6 +43,9 @@ export default function HomeLauncher() {
             <Link className="primary-button" href="/briefing">
               Iniciar briefing
             </Link>
+            <Link className="ghost-button" href="/site.html">
+              Ver site HTML
+            </Link>
             <Link className="ghost-button" href="/sessions">
               Como funcionam as sessões privadas
             </Link>
@@ -106,6 +109,18 @@ export default function HomeLauncher() {
 
       <section className="launcher-grid landing-grid">
         <ActionCard
+          href="/site.html"
+          subtitle="Landing estática"
+          title="Abrir site HTML público"
+          cta="Ver site"
+        >
+          <p>
+            Uma camada estática, clicável e compartilhável para apresentar a
+            plataforma fora do fluxo principal do app.
+          </p>
+        </ActionCard>
+
+        <ActionCard
           href="/briefing"
           subtitle="Entrada pública"
           title="Testar o fluxo de briefing"
@@ -118,18 +133,6 @@ export default function HomeLauncher() {
         </ActionCard>
 
         <ActionCard
-          href="/sessions"
-          subtitle="Sessões privadas"
-          title="Entender os links por cliente"
-          cta="Ver modelo"
-        >
-          <p>
-            Cada cliente pode receber narrativa, branding e código de acesso
-            próprios, sem exposição pública da operação.
-          </p>
-        </ActionCard>
-
-        <ActionCard
           href="/admin/login"
           subtitle="Equipe Lampada"
           title="Entrar no painel interno"
@@ -138,6 +141,18 @@ export default function HomeLauncher() {
           <p>
             Acompanhe score, pricing, gates, histórico e devolutiva executiva
             em uma área autenticada.
+          </p>
+        </ActionCard>
+
+        <ActionCard
+          href="/sessions"
+          subtitle="Sessões privadas"
+          title="Entender os links por cliente"
+          cta="Ver modelo"
+        >
+          <p>
+            Cada cliente pode receber narrativa, branding e código de acesso
+            próprios, sem exposição pública da operação.
           </p>
         </ActionCard>
       </section>
