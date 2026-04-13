@@ -4,9 +4,10 @@ import { notFound } from "next/navigation";
 import DiagnosticApp from "@/components/diagnostic-app";
 import { getClientSession, getPublicClientSession } from "@/lib/client-sessions";
 
-export default function ClientSessionPage({ params }) {
-  const privateSession = getClientSession(params.token);
-  const session = getPublicClientSession(params.token);
+export default async function ClientSessionPage({ params }) {
+  const { token } = await params;
+  const privateSession = getClientSession(token);
+  const session = getPublicClientSession(token);
 
   if (!session || !privateSession) {
     notFound();
@@ -14,7 +15,7 @@ export default function ClientSessionPage({ params }) {
 
   return (
     <DiagnosticApp
-      accessGranted={hasSessionAccess(params.token)}
+      accessGranted={hasSessionAccess(token)}
       requiresAuth={Boolean(privateSession.accessCode)}
       session={session}
     />

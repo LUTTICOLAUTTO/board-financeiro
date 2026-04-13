@@ -17,7 +17,8 @@ function Section({ children, title }) {
 export default async function AdminSubmissionDetailPage({ params }) {
   requireAdminAccess();
 
-  const submission = await getSubmissionById(params.id);
+  const { id } = await params;
+  const submission = await getSubmissionById(id);
 
   if (!submission) {
     notFound();

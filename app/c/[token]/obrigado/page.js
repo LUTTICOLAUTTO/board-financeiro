@@ -70,8 +70,10 @@ function ThankYouView({ session, diagnosis }) {
 }
 
 export default async function ThankYouPage({ params, searchParams }) {
-  const session = getPublicClientSession(params.token);
-  const submissionId = searchParams?.id;
+  const { token } = await params;
+  const resolvedSearchParams = await searchParams;
+  const session = getPublicClientSession(token);
+  const submissionId = resolvedSearchParams?.id;
   const record = submissionId ? await getSubmissionById(submissionId) : null;
 
   if (!session) {
