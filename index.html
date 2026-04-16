@@ -3,15 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Board Financeiro | Lampada</title>
+  <title>Boards Financeiros | Lampada</title>
   <style>
     :root {
-      --bg: #f7f2ea;
-      --panel: #fffaf3;
+      --bg: #f6f1e9;
+      --panel: rgba(255, 250, 243, 0.94);
       --ink: #17324c;
-      --muted: #5e6a78;
-      --accent: #cb5a3d;
+      --muted: #647282;
       --line: rgba(23, 50, 76, 0.12);
+      --accent: #cb5a3d;
+      --green: #2f7f4f;
+      --shadow: 0 18px 48px rgba(23, 50, 76, 0.08);
     }
 
     * { box-sizing: border-box; }
@@ -19,32 +21,45 @@
     body {
       margin: 0;
       font-family: "Avenir Next", "Trebuchet MS", sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(23, 126, 137, 0.12), transparent 30%),
-        radial-gradient(circle at top right, rgba(203, 90, 61, 0.12), transparent 25%),
-        var(--bg);
       color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(23, 126, 137, 0.12), transparent 28%),
+        radial-gradient(circle at top right, rgba(203, 90, 61, 0.12), transparent 26%),
+        linear-gradient(180deg, #fbf8f3 0%, var(--bg) 100%);
     }
 
     .wrap {
-      max-width: 960px;
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 48px 20px 64px;
+      padding: 42px 20px 64px;
     }
 
-    .card {
+    .hero, .card, .footer-card {
       background: var(--panel);
       border: 1px solid var(--line);
-      border-radius: 24px;
-      padding: 32px;
-      box-shadow: 0 18px 40px rgba(23, 50, 76, 0.08);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 34px 38px;
+      margin-bottom: 18px;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      font-family: "Iowan Old Style", "Palatino Linotype", serif;
+      letter-spacing: -0.02em;
     }
 
     h1 {
-      margin: 0 0 12px;
-      font-size: 2.7rem;
-      line-height: 1;
-      font-family: "Iowan Old Style", "Palatino Linotype", serif;
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      margin-bottom: 10px;
     }
 
     p {
@@ -53,66 +68,89 @@
       color: var(--muted);
     }
 
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(23, 50, 76, 0.07);
+      font-size: 0.92rem;
+      color: var(--ink);
+    }
+
+    .pill.ok {
+      background: rgba(47, 127, 79, 0.12);
+      color: var(--green);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin: 18px 0;
+    }
+
+    .card {
+      padding: 22px;
+      min-height: 280px;
+    }
+
+    .card p {
+      margin-bottom: 16px;
+      min-height: 78px;
+    }
+
+    .tag {
+      display: inline-flex;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(203, 90, 61, 0.12);
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
     .actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 14px;
-      margin: 24px 0 28px;
+      gap: 10px;
+      margin-top: auto;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 14px 18px;
+      padding: 12px 16px;
       border-radius: 999px;
       text-decoration: none;
       font-weight: 700;
       border: 1px solid var(--line);
-    }
-
-    .btn-primary {
-      background: var(--ink);
-      color: #fff;
-      border-color: var(--ink);
-    }
-
-    .btn-secondary {
-      background: transparent;
       color: var(--ink);
+      background: transparent;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-top: 18px;
+    .btn.primary {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: white;
     }
 
-    .panel {
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 18px;
-      background: rgba(255, 255, 255, 0.55);
+    .footer-card {
+      padding: 24px;
     }
 
-    .panel h2 {
-      margin: 0 0 10px;
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .panel ul {
-      margin: 0;
+    ul {
+      margin: 10px 0 0;
       padding-left: 18px;
       color: var(--muted);
-    }
-
-    .footer {
-      margin-top: 22px;
-      font-size: 0.9rem;
-      color: var(--muted);
+      line-height: 1.65;
     }
 
     code {
@@ -122,58 +160,90 @@
       color: var(--ink);
     }
 
-    @media (max-width: 720px) {
+    .warn {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    @media (max-width: 900px) {
       .grid {
         grid-template-columns: 1fr;
       }
 
       h1 {
-        font-size: 2.1rem;
+        font-size: 2.35rem;
       }
     }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="card">
-      <h1>Board Financeiro</h1>
+    <section class="hero">
+      <h1>Boards Financeiros</h1>
       <p>
-        Página de publicação do board financeiro da Lampada. Use os botões abaixo para baixar a apresentação
-        e compartilhar a versão mais recente com gestão, conselho ou investidores.
+        Central de publicação dos boards financeiros da Lampada. Aqui ficam a versão executiva principal,
+        o board de despesas e a versão de conselho, sempre com os downloads mais recentes.
       </p>
-
-      <div class="actions">
-        <a class="btn btn-primary" href="./Board_Integrado_Auto.pptx">Baixar PPTX</a>
-        <a class="btn btn-secondary" href="./Board_Integrado_Auto.pptx" download>Forçar Download</a>
+      <div class="meta">
+        <span class="pill ok">Publicado no GitHub Pages</span>
+        <span class="pill">Última atualização da página: 16/04/2026</span>
+        <span class="pill">Formato principal: PPTX</span>
       </div>
+    </section>
 
-      <div class="grid">
-        <div class="panel">
-          <h2>Conteúdo</h2>
-          <ul>
-            <li>Situação financeira atual</li>
-            <li>Caixa e pontos críticos</li>
-            <li>Estrutura de despesas</li>
-            <li>Oportunidades de redução</li>
-            <li>Plano de ação executivo</li>
-          </ul>
+    <section class="grid">
+      <article class="card">
+        <div class="tag">Principal</div>
+        <h2>Board Integrado Automático</h2>
+        <p>
+          Versão principal com situação financeira, caixa, despesas, oportunidades de redução e plano de ação.
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="./Board_Integrado_Auto.pptx">Baixar PPTX</a>
+          <a class="btn" href="./Board_Integrado_Auto.pptx" download>Forçar Download</a>
         </div>
+      </article>
 
-        <div class="panel">
-          <h2>Atualização</h2>
-          <ul>
-            <li>Substitua o arquivo <code>Board_Integrado_Auto.pptx</code></li>
-            <li>Faça novo commit</li>
-            <li>Envie para o GitHub</li>
-            <li>O GitHub Pages publica automaticamente</li>
-          </ul>
+      <article class="card">
+        <div class="tag">Despesas</div>
+        <h2>Board de Despesas</h2>
+        <p>
+          Foco na estrutura atual, buckets de gasto e oportunidades concretas de redução no curto prazo.
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="./Board_Despesas_Oportunidades_16_04_2026.pptx">Baixar PPTX</a>
+          <a class="btn" href="./Board_Despesas_Oportunidades_16_04_2026.pptx" download>Forçar Download</a>
         </div>
-      </div>
+      </article>
 
-      <div class="footer">
-        Se você quiser, pode depois adicionar também uma versão em PDF nesta mesma pasta para visualização rápida no navegador.
-      </div>
-    </div>
+      <article class="card">
+        <div class="tag">Conselho</div>
+        <h2>Board do Conselho</h2>
+        <p>
+          Versão mais sintética, pensada para leitura estratégica e deliberações de conselho ou investidor.
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="./Board_Conselho_Lampada_2026_v2.pptx">Baixar PPTX</a>
+          <a class="btn" href="./Board_Conselho_Lampada_2026_v2.pptx" download>Forçar Download</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="footer-card">
+      <h2>Atualização e Publicação</h2>
+      <ul>
+        <li>Substitua os arquivos `.pptx` nesta mesma pasta quando houver versão nova.</li>
+        <li>Faça `git add`, `git commit` e `git push` no repositório.</li>
+        <li>O GitHub Pages publica automaticamente após o push.</li>
+        <li><span class="warn">PDF:</span> tentei automatizar a exportação, mas este ambiente não tem PowerPoint, Keynote nem LibreOffice instalados para converter o `.pptx` com fidelidade.</li>
+        <li>Se você exportar um PDF localmente depois, basta colocá-lo nesta pasta e adicionar um novo botão no `index.html`.</li>
+      </ul>
+      <ul>
+        <li>Arquivo principal atual: <code>Board_Integrado_Auto.pptx</code></li>
+        <li>Arquivo de despesas: <code>Board_Despesas_Oportunidades_16_04_2026.pptx</code></li>
+        <li>Arquivo de conselho: <code>Board_Conselho_Lampada_2026_v2.pptx</code></li>
+      </ul>
+    </section>
   </div>
 </body>
 </html>
